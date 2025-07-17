@@ -10,7 +10,7 @@ export const metadata = {
     siteName: "fullparty",
     images: [
       {
-        url: "/banner.png",
+        url: "https://fullparty-app.vercel.app/banner.png",
         width: 1200,
         height: 630,
         alt: "フルパを当たり前にする大学生",
@@ -22,6 +22,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@tasu9ex",
+    images: ["https://fullparty-app.vercel.app/banner.png"],
   },
 };
 
