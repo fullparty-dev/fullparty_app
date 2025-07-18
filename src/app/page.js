@@ -19,14 +19,14 @@ export default function Home() {
           href="https://note.com/tasu9ex"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-16 py-6 text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer"
+          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
           📝 構想を見る（note）
         </a>
 
         <a
           href="/comingsoon"
-          className="px-16 py-6 text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer"
+          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
           🧪 プロトタイプを見る
         </a>
@@ -66,7 +66,7 @@ export default function Home() {
               </p>
               <div className="text-xs text-gray-400 space-y-0.5">
                 <p>📧 fullparty.dev@gmail.com</p>
-                <p>🐦 <a href="https://twitter.com/tasu9ex" target="_blank" className="underline">X（@tasu9ex）</a></p>
+                <p>🐦 <a href="https://twitter.com/tqsu9ex" target="_blank" className="underline">X（@tqsu9ex）</a></p>
                 <p>📘 <a href="https://note.com/tasu9ex" target="_blank" className="underline">noteページ</a></p>
               </div>
             </div>
