@@ -1,39 +1,43 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-primary text-white flex flex-col items-center justify-center px-4 py-16 space-y-10">
+    <main className="min-h-screen bg-primary text-white flex flex-col items-center justify-center px-4 py-16 space-y-10 max-w-screen-xl mx-auto">
       {/* バナー画像 */}
       <img src="/banner.png" alt="#フルパを当たり前にする大学生" className="w-full max-w-3xl rounded-lg shadow mt-16" />
 
-      <section className="text-center">
-        <br />
-        <br />
-        <h1 className="text-4xl font-bold mb-4">
-          🎮 フルパを当たり前にする世界へ
-        </h1>
-        <p className="text-lg max-w-xl mx-auto">
+      {/* キャッチコピー（思想） */}
+      <div className="text-center max-w-2xl mt-10">
+        <h2 className="text-2xl font-bold mb-2">🎮 フルパを当たり前にする世界へ</h2>
+        <p className="text-base leading-relaxed">
           「今夜あと1人が見つからない──」<br />
           そんな夜を、なくしたい。<br />
           誰でも気軽にフルパが組めるマッチングサービスを開発中です。
-          <br />
-          <br />
         </p>
-        <div className="h-8" />
-      </section>
+      </div>
 
-      {/* 思想ビジュアル */}
-      <div className="flex justify-center mt-8">
-        <img
-          src="/fullparty.png"
-          alt="思想ビジュアル：フルパ集結中"
-          className="w-full max-w-3xl rounded-xl shadow-md"
-        />
+      <div className="flex flex-wrap justify-center gap-4 mt-8">
+        <a
+          href="https://note.com/tasu9ex"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-16 py-6 text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer"
+        >
+          📝 構想を見る（note）
+        </a>
+
+        <a
+          href="#"
+          className="px-16 py-6 text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer"
+        >
+          🧪 プロトタイプを見る
+        </a>
       </div>
 
       {/* プロトタイプUI紹介 */}
-      <section className="text-center mt-16">
+      <section className="text-center mt-16 bg-primary py-10 rounded-lg">
         <h2 className="text-2xl font-semibold mb-4">🔧 プロトタイプ イメージ</h2>
         <p className="text-md max-w-md mx-auto mb-6">
-          現在UIを開発中です。以下は予約画面のイメージ例です（後日差し替え予定）。
+          現在UIを開発中です。以下は予約画面のイメージ例です。<br />
+          （現在てきとうなので後日差し替え予定）
         </p>
         <img
           src="/mockUI.png"
@@ -42,30 +46,13 @@ export default function Home() {
         />
       </section>
 
-      <div className="flex flex-wrap justify-center gap-4 mt-8">
-        <a
-          href="https://note.com/tasu9ex"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-20 py-10 text-2xl border border-green-600 text-green-600 rounded-full hover:bg-green-50 hover:scale-105 transition-transform duration-200 cursor-pointer"
-        >
-          📝 構想を見る（note）
-        </a>
-
-        <a
-          href="#"
-          className="px-20 py-10 text-2xl border border-green-600 text-green-600 rounded-full hover:bg-green-50 hover:scale-105 transition-transform duration-200 cursor-pointer"
-        >
-          🧪 プロトタイプを見る
-        </a>
-      </div>
       <br />
       <br />
 
       <hr className="w-20 border-gray-300" />
 
       <footer className="mt-24 w-full flex justify-center">
-        <section className="text-sm text-gray-200 w-full max-w-md px-4 py-[60px] rounded-lg" style={{ backgroundColor: "#222222" }}>
+        <section className="text-sm text-gray-200 w-full max-w-4xl px-4 py-[60px] rounded-lg" style={{ backgroundColor: "#222222" }}>
           <div className="flex items-start gap-4">
             <img
               src="/avatar.png"
