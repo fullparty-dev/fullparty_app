@@ -5,9 +5,9 @@ export default function Home() {
       <img src="/banner.png" alt="#フルパを当たり前にする大学生" className="w-full max-w-3xl rounded-lg shadow mt-16" />
 
       {/* キャッチコピー（思想） */}
-      <div className="text-center max-w-2xl mt-10">
-        <h2 className="text-2xl font-bold mb-2">🎮 フルパを当たり前にする世界へ</h2>
-        <p className="text-base leading-relaxed">
+      <div className="text-center max-w-2xl mt-20">
+        <h2 className="text-3xl font-bold mb-4">🎮 フルパを当たり前にする世界へ</h2>
+        <p className="text-lg leading-relaxed">
           「今夜あと1人が見つからない──」<br />
           そんな夜を、なくしたい。<br />
           誰でも気軽にフルパが組めるマッチングサービスを開発中です。
@@ -25,7 +25,7 @@ export default function Home() {
         </a>
 
         <a
-          href="#"
+          href="/comingsoon"
           className="px-16 py-6 text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer"
         >
           🧪 プロトタイプを見る
@@ -52,20 +52,19 @@ export default function Home() {
       <hr className="w-20 border-gray-300" />
 
       <footer className="mt-24 w-full flex justify-center">
-        <section className="text-sm text-gray-200 w-full max-w-4xl px-4 py-[60px] rounded-lg" style={{ backgroundColor: "#222222" }}>
-          <div className="flex items-start gap-4">
+        <section className="text-sm text-gray-200 w-full max-w-4xl px-4 py-[60px] rounded-lg bg-[#0f2a28] shadow-xl">
+          <div className="flex flex-col md:flex-row items-start gap-6">
             <img
               src="/avatar.png"
               alt="たすくアイコン"
-              style={{ width: "128px", height: "128px" }}
-              className="rounded-full object-cover mt-1"
+              className="rounded-full object-cover w-24 h-24 ring-2 ring-white shadow"
             />
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p>
                 <strong>開発者：たすく（大学生ゲーマー起業家）</strong><br />
                 AIと共に「遊ぶ約束のコストを下げる世界」を目指して、日々構想と開発に挑戦中。
               </p>
-              <div className="text-xs text-gray-500 space-y-0.5">
+              <div className="text-xs text-gray-400 space-y-0.5">
                 <p>📧 fullparty.dev@gmail.com</p>
                 <p>🐦 <a href="https://twitter.com/tasu9ex" target="_blank" className="underline">X（@tasu9ex）</a></p>
                 <p>📘 <a href="https://note.com/tasu9ex" target="_blank" className="underline">noteページ</a></p>
