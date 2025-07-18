@@ -22,6 +22,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@tasu9ex",
+    title: "フルパを当たり前にする世界へ",
+    description: "今夜あと1人が見つからない──その夜をなくすために。",
     images: ["https://fullparty-app.vercel.app/banner.png"],
   },
 };
