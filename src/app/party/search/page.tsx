@@ -6,6 +6,7 @@ import SmartphoneWrapper from "@/components/SmartphoneWrapper";
 import { mockParties } from "@/lib/mockData";
 import { PartyCard } from "@/components/PartyCard";
 import { useModeStore } from "@/lib/store";
+import BottomNav from "@/components/BottomNav";
 
 export default function PartySearchPage() {
   const mode = useModeStore((state) => state.selectedMode);
@@ -47,15 +48,8 @@ export default function PartySearchPage() {
             <button className="text-3xl bg-primary text-white rounded-full w-12 h-12 shadow-md">+</button>
           </div>
 
-          {/* 下部ナビ */}
-          <div className="absolute bottom-0 left-0 w-full h-14 bg-gray-100 border-t border-gray-300 flex justify-around items-center text-xl">
-            <button onClick={() => router.push("/party/home")}>🏠</button>
-            <button onClick={() => router.push("/party/search")}>🔍</button>
-            <button onClick={() => router.push("/profile")}>👤</button>
-            <button onClick={() => router.push("/store")}>🛒</button>
-            <button onClick={() => router.push("/messages")}>✉️</button>
-          </div>
         </div>
+        <BottomNav />
       </SmartphoneFrame>
     </SmartphoneWrapper>
   );

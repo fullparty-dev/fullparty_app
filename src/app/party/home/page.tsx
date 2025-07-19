@@ -12,7 +12,7 @@ export default function PartyPage() {
     <main className="min-h-screen bg-primary px-4 flex flex-col items-center justify-center">
       <SmartphoneWrapper>
         <SmartphoneFrame>
-        <div className="p-4 pb-14 overflow-y-auto max-h-full">
+        <div className="p-4 pb-[56px] overflow-y-auto max-h-full">
           <div className="flex items-center justify-between mb-4">
             <img src="/avatar.png" alt="My Icon" className="w-8 h-8 rounded-full" />
             <div className="flex bg-gray-200 rounded-full p-1 text-sm font-medium">
