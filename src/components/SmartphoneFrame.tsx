@@ -20,6 +20,16 @@ export default function SmartphoneFrame({ children }: Props) {
               paddingRight: "env(safe-area-inset-right)",
             }}
           >
+            <div className="h-8 w-full shrink-0 px-4 flex items-center justify-center text-[11px] font-medium text-black">
+              <div className="flex w-full max-w-[300px] items-center justify-between">
+                <span>{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                <div className="flex items-center space-x-1">
+                  <span>📶</span>
+                  <span>📡</span>
+                  <span>🔋</span>
+                </div>
+              </div>
+            </div>
             {children}
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-28 h-1.5 rounded-full bg-gray-600 opacity-80 z-[60] pointer-events-none" />
           </div>

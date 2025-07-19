@@ -2,7 +2,7 @@
 import React from 'react';
 import { Party } from '../types';
 
-export const PartyCard = ({ party, isPreview = false }: { party: Party; isPreview?: boolean }) => {
+export const PartyCard = ({ party, isPreview = false, showJoinButton = false }: { party: Party; isPreview?: boolean; showJoinButton?: boolean }) => {
   const emptySlots = party.maxMembers - party.members.length;
 
   return (
@@ -10,6 +10,14 @@ export const PartyCard = ({ party, isPreview = false }: { party: Party; isPrevie
 
       {/* 既存の PartyCard コンテンツ */}
       <div className="border border-gray-200 rounded-xl p-3 mb-4 shadow bg-white text-black w-full max-w-xl text-sm relative">
+
+        {showJoinButton && (
+          <div className="absolute top-2 right-2">
+            <button className="text-xs px-2 py-1 bg-primary text-white rounded shadow-sm hover:opacity-90">
+              参加する
+            </button>
+          </div>
+        )}
 
         {/* Members section with time on the same line */}
         <div className="flex justify-between items-end mt-1">
