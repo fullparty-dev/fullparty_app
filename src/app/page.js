@@ -28,18 +28,18 @@ export default function Home() {
           href="/party/home"
           className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
-          🧪 プロトタイプを触る
+          🧪 モックを触る
         </a>
       </div>
 
       {/* プロトタイプUI紹介（iPhone風枠で表示） */}
       <section className="text-center mt-16 bg-primary py-10 rounded-lg">
-        <h2 className="text-2xl font-semibold mb-4">🔧 プロトタイプ イメージ</h2>
+        <h2 className="text-2xl font-semibold mb-4">🔧 モック イメージ</h2>
         <p className="text-md max-w-md mx-auto mb-6">
           現在UIを開発中です。以下はそのイメージ画像です。
         </p>
 
-        {/* PC表示用：プロトタイプイメージ画像 */}
+        {/* PC表示用：モックイメージ画像 */}
         <div className="hidden sm:flex justify-center">
           <img
             src="/mockPICTURE.png"
@@ -48,11 +48,11 @@ export default function Home() {
           />
         </div>
 
-        {/* スマホ表示用：プロトタイプイメージ画像 */}
+        {/* スマホ表示用：モックイメージ画像 */}
         <div className="sm:hidden">
           <img
             src="/mockPICTURE.png"
-            alt="プロトタイプイメージ"
+            alt="モックイメージ"
             className="w-full rounded-lg shadow-lg object-cover"
           />
         </div>
