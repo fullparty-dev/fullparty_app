@@ -61,9 +61,24 @@ export default function Home() {
       <br />
       <br />
 
-      <hr className="w-20 border-gray-300" />
+      {/* 差別化ポイントセクション */}
+      <section className="mt-24 text-white text-center max-w-3xl space-y-4">
+        <h2 className="text-2xl font-semibold">📌 他サービスとの違い</h2>
+        <ul className="text-left text-sm sm:text-base leading-relaxed space-y-2 list-disc list-inside">
+          <li>ロール選択ができる</li>
+          <li>未来の予定をカバー（“時間起点”UI）</li>
+          <li>フルパになるまで始まらない</li>
+          <li>マッチ履歴が見られる</li>
+          <li>掲示板のように時系列で流れない（充填率・開始時刻でソート）</li>
+          <li>詳細検索（VCツールの有無、デバイス、ランクレンジ）</li>
+          <li>プロフィールに1クリップ可能</li>
+          <li>クロスプレイ前提の設計</li>
+          <li>利用者の見える化（現在の募集数）</li>
+        </ul>
+        <div className="h-20" />
+      </section>
 
-      <footer className="mt-24 w-full flex justify-center">
+      <footer className="mt-25 w-full flex justify-center">
         <section className="text-sm text-gray-200 w-full max-w-4xl px-4 py-[60px] rounded-lg bg-[#21645f] shadow-xl">
           <div className="flex flex-col md:flex-row items-start gap-6">
             <img
