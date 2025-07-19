@@ -13,6 +13,7 @@ export default function PartyPage() {
           <div className="flex bg-gray-200 rounded-full p-1 text-sm font-medium">
             <button className="px-3 py-1 rounded-full bg-white shadow text-black">参加中</button>
             <button className="px-3 py-1 rounded-full text-black">フレンド</button>
+            <button className="px-3 py-1 rounded-full text-black">マッチ履歴</button>
           </div>
           <button className="text-xl">🔔</button>
         </div>
