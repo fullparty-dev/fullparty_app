@@ -19,14 +19,14 @@ export default function Home() {
           href="https://note.com/tasu9ex"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
+          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-[#21645f] text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
           📝 構想を見る（note）
         </a>
 
         <a
           href="/party/home"
-          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
+          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-[#21645f] text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
           🧪 モックを触る
         </a>
@@ -64,7 +64,7 @@ export default function Home() {
       <hr className="w-20 border-gray-300" />
 
       <footer className="mt-24 w-full flex justify-center">
-        <section className="text-sm text-gray-200 w-full max-w-4xl px-4 py-[60px] rounded-lg bg-[#0f2a28] shadow-xl">
+        <section className="text-sm text-gray-200 w-full max-w-4xl px-4 py-[60px] rounded-lg bg-[#21645f] shadow-xl">
           <div className="flex flex-col md:flex-row items-start gap-6">
             <img
               src="/avatar.png"
@@ -74,7 +74,8 @@ export default function Home() {
             <div className="space-y-2">
               <p>
                 <strong>開発者：たすく（大学生ゲーマー起業家）</strong><br />
-                AIと共に「遊ぶ約束のコストを下げる世界」を目指して、日々構想と開発に挑戦中。
+                AIと共に「遊ぶ約束のコストを下げる世界」を目指して、日々構想と開発に挑戦中。<br /><br />
+                #フルパを当たり前にする大学生
               </p>
               <div className="text-xs text-gray-400 space-y-0.5">
                 <p>📧 fullparty.dev@gmail.com</p>
