@@ -10,7 +10,7 @@ export default function PartyPage() {
       <div className="p-4 pb-[56px] overflow-y-auto max-h-full">
         <div className="flex items-center justify-between mb-4">
           <img src="/avatar.png" alt="My Icon" className="w-8 h-8 rounded-full" />
-          <div className="flex bg-gray-200 rounded-full p-1 text-sm font-medium">
+          <div className="flex bg-gray-200 rounded-full p-1 text-xs font-medium max-w-full overflow-x-auto whitespace-nowrap">
             <button className="px-3 py-1 rounded-full bg-white shadow text-black">参加中</button>
             <button className="px-3 py-1 rounded-full text-black">フレンド</button>
             <button className="px-3 py-1 rounded-full text-black">マッチ履歴</button>
