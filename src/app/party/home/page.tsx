@@ -1,6 +1,7 @@
 "use client";
 
 import SmartphoneFrame from "@/components/SmartphoneFrame";
+import SmartphoneWrapper from "@/components/SmartphoneWrapper";
 import BottomNav from "@/components/BottomNav";
 
 import { PartyCard } from "@/components/PartyCard";
@@ -8,8 +9,9 @@ import { mockParties } from "@/lib/mockData";
 
 export default function PartyPage() {
   return (
-    <main className="min-h-screen bg-primary px-4 py-10 flex flex-col items-center justify-center">
-      <SmartphoneFrame>
+    <main className="min-h-screen bg-primary px-4 flex flex-col items-center justify-center">
+      <SmartphoneWrapper>
+        <SmartphoneFrame>
         <div className="p-4 pb-14 overflow-y-auto max-h-full">
           <div className="flex items-center justify-between mb-4">
             <img src="/avatar.png" alt="My Icon" className="w-8 h-8 rounded-full" />
@@ -50,7 +52,8 @@ export default function PartyPage() {
           </div>
         </div>
         <BottomNav />
-      </SmartphoneFrame>
+        </SmartphoneFrame>
+      </SmartphoneWrapper>
     </main>
   );
 }
