@@ -1,4 +1,3 @@
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-primary text-white flex flex-col items-center justify-center px-4 py-16 space-y-10 max-w-screen-xl mx-auto">
@@ -26,7 +25,7 @@ export default function Home() {
         </a>
 
         <a
-          href="/party"
+          href="/party/home"
           className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
           🧪 プロトタイプを見る
@@ -45,7 +44,7 @@ export default function Home() {
           <img
             src="/mockPICTURE.png"
             alt="プロトタイプイメージ"
-            className="w-[393px] h-[752px] rounded-[40px] shadow-2xl object-cover"
+            className="w-[50vw] max-w-[393px] h-auto aspect-[393/752] rounded-[40px] shadow-2xl object-cover"
           />
         </div>
 
