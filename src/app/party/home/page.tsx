@@ -38,7 +38,7 @@ export default function PartyPage() {
               className="w-full p-2 border rounded text-sm"
             />
             <p className="text-xs text-gray-500">
-              フルパ成立後に公開されます（ホストが「成立後のみ表示」設定を有効にしているため）
+              IDはフルパ成立後に公開されます
             </p>
           </div>
 
