@@ -28,7 +28,7 @@ export default function Home() {
           href="/party/home"
           className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
-          🧪 プロトタイプを見る
+          🧪 プロトタイプを触る
         </a>
       </div>
 
