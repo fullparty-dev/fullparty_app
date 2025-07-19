@@ -1,3 +1,4 @@
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-primary text-white flex flex-col items-center justify-center px-4 py-16 space-y-10 max-w-screen-xl mx-auto">
@@ -25,25 +26,37 @@ export default function Home() {
         </a>
 
         <a
-          href="/comingsoon"
+          href="/party"
           className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-primary text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
           🧪 プロトタイプを見る
         </a>
       </div>
 
-      {/* プロトタイプUI紹介 */}
+      {/* プロトタイプUI紹介（iPhone風枠で表示） */}
       <section className="text-center mt-16 bg-primary py-10 rounded-lg">
         <h2 className="text-2xl font-semibold mb-4">🔧 プロトタイプ イメージ</h2>
         <p className="text-md max-w-md mx-auto mb-6">
-          現在UIを開発中です。以下は予約画面のイメージ例です。<br />
-          （現在てきとうなので後日差し替え予定）
+          現在UIを開発中です。以下はそのイメージ画像です。
         </p>
-        <img
-          src="/mockUI.png"
-          alt="モックUIイメージ"
-          className="w-full max-w-2xl rounded-lg shadow"
-        />
+
+        {/* PC表示用：プロトタイプイメージ画像 */}
+        <div className="hidden sm:flex justify-center">
+          <img
+            src="/mockPICTURE.png"
+            alt="プロトタイプイメージ"
+            className="w-[393px] h-[752px] rounded-[40px] shadow-2xl object-cover"
+          />
+        </div>
+
+        {/* スマホ表示用：プロトタイプイメージ画像 */}
+        <div className="sm:hidden">
+          <img
+            src="/mockPICTURE.png"
+            alt="プロトタイプイメージ"
+            className="w-full rounded-lg shadow-lg object-cover"
+          />
+        </div>
       </section>
 
       <br />
