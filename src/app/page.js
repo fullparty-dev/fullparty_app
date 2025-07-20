@@ -88,7 +88,7 @@ export default function Home() {
             />
             <div className="space-y-2">
               <p>
-                <strong>開発者：たすく（大学生ゲーマー起業家）</strong><br />
+                <strong>開発者：たすく（大学生ゲーマー）</strong><br />
                 AIと共に「遊ぶ約束のコストを下げる世界」を目指して、日々構想と開発に挑戦中。<br /><br />
                 #フルパを当たり前にする大学生
               </p>
