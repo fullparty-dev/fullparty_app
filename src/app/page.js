@@ -66,7 +66,7 @@ export default function Home() {
         <h2 className="text-2xl font-semibold">📌 他サービスとの違い</h2>
         <ul className="text-left text-sm sm:text-base leading-relaxed space-y-2 list-disc list-inside">
           <li>ロール選択ができる</li>
-          <li>未来の予定をカバー（“時間起点”UI）</li>
+          <li>未来の予定をカバー（予約型マッチ対応）</li>
           <li>フルパになるまで始まらない</li>
           <li>マッチ履歴が見られる</li>
           <li>掲示板のように時系列で流れない（充填率・開始時刻でソート）</li>
