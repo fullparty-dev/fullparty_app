@@ -1,3 +1,5 @@
+const buildTime = process.env.NEXT_PUBLIC_BUILD_TIME;
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-primary text-white flex flex-col items-center justify-center px-4 py-16 space-y-10 max-w-screen-xl mx-auto">
@@ -147,6 +149,9 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <p className="text-xs text-gray-400 text-center mt-8">
+            最終更新：{buildTime ? new Date(buildTime).toLocaleString('ja-JP') : '取得中…'}
+          </p>
         </section>
       </footer>
     </main>
