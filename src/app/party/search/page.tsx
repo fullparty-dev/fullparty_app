@@ -1,8 +1,9 @@
+// Imports
 "use client";
-
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { mockParties } from "@/lib/mockData";
+import { usePartyStore } from "@/lib/store";
 import { PartyCard } from "@/components/PartyCard";
 import { useModeStore } from "@/lib/store";
 import SmartphoneLayout from "@/components/SmartphoneLayout";
@@ -11,6 +12,10 @@ export default function PartySearchPage() {
   const mode = useModeStore((state) => state.selectedMode);
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState("カジュアル");
+  const parties = usePartyStore((state) => state.parties);
+  // Matched party and error handling
+  const matchedPartyId = usePartyStore((state) => state.matchedPartyId);
+
 
   return (
     <SmartphoneLayout>
@@ -43,7 +48,7 @@ export default function PartySearchPage() {
 
         {/* カード一覧 */}
         <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2 pb-28">
-          {mockParties
+          {parties
             .filter((p) => {
               const categoryMap = {
                 "カジュアル": "casual",

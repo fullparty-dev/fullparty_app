@@ -1,7 +1,6 @@
-
-
 "use client";
 
+import { Toaster } from "react-hot-toast";
 import SmartphoneWrapper from "@/components/SmartphoneWrapper";
 import SmartphoneFrame from "@/components/SmartphoneFrame";
 import BottomNav from "@/components/BottomNav";
@@ -17,6 +16,14 @@ export default function SmartphoneLayout({ children }: SmartphoneLayoutProps) {
         <SmartphoneFrame>
           {children}
           <BottomNav />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                marginTop: "7rem", // 出現位置を下にずらす
+              },
+            }}
+          />
         </SmartphoneFrame>
       </SmartphoneWrapper>
     </main>

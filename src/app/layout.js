@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "フルパを当たり前にする世界へ",
@@ -31,7 +32,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
-      <body className="bg-primary text-white">{children}</body>
+      <body className="bg-primary text-white">
+        {children}
+      </body>
     </html>
   );
 }

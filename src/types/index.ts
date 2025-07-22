@@ -1,4 +1,4 @@
-export type Device = 'pc' | 'ps' | 'switch' | 'xbox';
+export type Device = 'PC' | 'PS' | 'Switch' | 'Xbox';
 
 export type Member = {
   id: string;
@@ -18,9 +18,24 @@ export type Party = {
   startAt: string;
   requireFull: boolean;
   maxMembers: number;
-  members: Member[];
+  memberIds: string[];
   acceptedDevices?: Device[];
   rankRange?: string[];
   vcTool: string;
   message: string;
+};
+
+export type User = {
+  id: string;
+  name: string;
+  avatar: string;
+  banner: string;
+  ingameId: {
+    [key: string]: string;
+  };
+  vcId: {
+    [key: string]: string;
+  };
+  clipUrl: string;
+  devices: Device[];
 };

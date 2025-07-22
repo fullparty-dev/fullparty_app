@@ -1,7 +1,15 @@
 "use client";
 import SmartphoneLayout from "@/components/SmartphoneLayout";
+import { useUserStore } from "@/lib/store";
+import { mockUsers } from "@/lib/mockUsers";
 
 export default function Profile() {
+  const currentUser = useUserStore((state) => state.getCurrentUser());
+
+  if (!currentUser) {
+    return <div className="p-4">ユーザー情報を取得できませんでした。</div>;
+  }
+
   return (
     <SmartphoneLayout>
       <div className="h-full relative bg-white flex flex-col">
@@ -9,12 +17,12 @@ export default function Profile() {
           {/* アイコンとバナー */}
           <div className="relative mb-4">
             <img
-              src="/banner.png"
+              src={currentUser.banner}
               alt="Banner"
               className="h-24 w-full object-cover rounded-t-md"
             />
             <img
-              src="/avatar.png"
+              src={currentUser.avatar}
               alt="Avatar"
               className="w-16 h-16 rounded-full border-2 border-white absolute left-4 -bottom-8"
             />
@@ -23,7 +31,7 @@ export default function Profile() {
           {/* 名前とひとこと */}
           <div className="mt-8 mb-2">
             <div className="flex justify-between items-center">
-              <h2 className="text-lg font-semibold">たすく</h2>
+              <h2 className="text-lg font-semibold">{currentUser.name}</h2>
               <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
                 プロフィールを編集
               </button>
@@ -34,7 +42,7 @@ export default function Profile() {
           {/* サービスID */}
           <div className="mb-4">
             <p className="text-gray-500">ユーザーID</p>
-            <p className="font-mono">tasu9ex</p>
+            <p className="font-mono">{currentUser.id}</p>
           </div>
 
           {/* ベストクリップ */}
@@ -44,10 +52,32 @@ export default function Profile() {
               <video
                 controls
                 className="w-full rounded border"
-                src="/myclip.mp4"
+                src={currentUser.clipUrl}
               >
                 お使いのブラウザは動画タグに対応していません。
               </video>
+            </div>
+          </div>
+
+          {/* デバイス表示 */}
+          <div className="mb-4">
+            <div className="flex justify-between items-center mb-1">
+              <p className="text-gray-500">デバイス</p>
+              <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
+                編集
+              </button>
+            </div>
+            <div className="text-sm pl-1 space-x-1">
+              {currentUser.devices?.map((d) => {
+                const emojiMap: { [key: string]: string } = {
+                  PC: "💻",
+                  PS: "🎮",
+                  Switch: "📱",
+                };
+                return (
+                  <span key={d}>{emojiMap[d] || d}</span>
+                );
+              })}
             </div>
           </div>
 
@@ -60,8 +90,11 @@ export default function Profile() {
               </button>
             </div>
             <ul className="pl-4 list-disc text-sm">
-              <li>Apex: tasu9ex</li>
-              <li>Valorant: t9ex#JP</li>
+              {Object.entries(currentUser.ingameId).map(([game, id]) => (
+                <li key={game}>
+                  {game.charAt(0).toUpperCase() + game.slice(1)}: {id}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -74,8 +107,11 @@ export default function Profile() {
               </button>
             </div>
             <ul className="pl-4 list-disc text-sm">
-              <li>Discord: tasu9#8822</li>
-              <li>PSN: tasu9ex</li>
+              {Object.entries(currentUser.vcId).map(([tool, id]) => (
+                <li key={tool}>
+                  {tool.charAt(0).toUpperCase() + tool.slice(1)}: {id}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
