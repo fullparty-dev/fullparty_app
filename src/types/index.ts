@@ -6,6 +6,8 @@ export type Member = {
   avatarUrl: string;
   device: Device;
   isHost?: boolean;
+  ingameId?: string;
+  vcId?: string;
 };
 
 export type Party = {

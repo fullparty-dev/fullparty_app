@@ -22,22 +22,6 @@ export default function PartyPage() {
           <PartyCard key={party.id} party={party} />
         ))}
 
-        <div className="px-4 mt-2 space-y-2 text-sm text-gray-700">
-          <input
-            type="text"
-            placeholder="ゲーム内IDを入力"
-            className="w-full p-2 border rounded text-sm"
-          />
-          <input
-            type="text"
-            placeholder="VCツールIDを入力"
-            className="w-full p-2 border rounded text-sm"
-          />
-          <p className="text-xs text-gray-500">
-            IDはフルパ成立後に公開されます
-          </p>
-        </div>
-
         <div className="mt-4 px-4">
           <a
             href="/party/home/success"
