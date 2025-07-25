@@ -134,9 +134,9 @@ export default function PartyPage() {
                               </div>
                             )}
                           </div>
-                          <span className="text-xs">ゲームID: {member.ingameId?.["Apex Legends"] || "未設定"}</span>
+                          <span className="text-xs">ゲーム内ID: {member.ingameId?.["Apex Legends"] || "未設定"}</span>
                           {matchedParty.vcTool !== "なし" && (
-                            <span className="text-xs">VC ID: {member.vcId?.["Apex Legends"] || "未設定"}</span>
+                            <span className="text-xs">VCツールID: {member.vcId?.["Apex Legends"] || "未設定"}</span>
                           )}
                         </div>
                       </div>
@@ -169,8 +169,8 @@ export default function PartyPage() {
                                 <div className="flex items-center justify-between">
                                   <span className="font-semibold">空き枠</span>
                                 </div>
-                                <span className="text-xs">ゲームID: --</span>
-                                <span className="text-xs">VC ID: --</span>
+                                <span className="text-xs">ゲーム内ID: --</span>
+                                <span className="text-xs">VCツールID: --</span>
                               </div>
                             </div>
                           )}

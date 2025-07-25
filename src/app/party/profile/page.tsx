@@ -39,10 +39,25 @@ export default function Profile() {
             <p className="text-gray-600 text-sm">よろしくお願いします！</p>
           </div>
 
-          {/* サービスID */}
-          <div className="mb-4">
-            <p className="text-gray-500">ユーザーID</p>
-            <p className="font-mono">{currentUser.id}</p>
+          {/* サービスID + デバイス */}
+          <div className="mb-4 flex justify-between items-start">
+            <div>
+              <p className="text-gray-500">ユーザーID</p>
+              <p className="font-mono">{currentUser.id}</p>
+            </div>
+            <div className="pl-4">
+              <p className="text-gray-500">デバイス</p>
+              <div className="text-sm space-x-1">
+                {currentUser.devices?.map((d) => (
+                  <img
+                    key={d}
+                    src={`/assets/icons/devices/${d}.png`}
+                    alt={d}
+                    className="inline w-5 h-5 mr-1"
+                  />
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* ベストクリップ */}
@@ -59,58 +74,35 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* デバイス表示 */}
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-1">
-              <p className="text-gray-500">デバイス</p>
+          {/* デバイス表示はユーザーIDの隣に統合 */}
+
+          {/* APEXカード内にゲームIDとVCツールID統合 */}
+          <div className="mb-6 border rounded p-4 shadow-sm">
+            <div className="flex justify-between items-center mb-2">
+              <p className="font-semibold text-black">Apex Legends</p>
               <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
                 編集
               </button>
             </div>
-            <div className="text-sm pl-1 space-x-1">
-              {currentUser.devices?.map((d) => (
-                <img
-                  key={d}
-                  src={`/assets/icons/devices/${d}.png`}
-                  alt={d}
-                  className="inline w-4 h-4 mr-1"
-                />
-              ))}
+
+            <div className="text-sm space-y-2">
+              <div className="flex justify-between">
+                <p className="text-gray-500">ゲーム内ID</p>
+                <p>{Object.values(currentUser.ingameId)[0]?.trim()}</p>
+              </div>
+              <div className="flex justify-between">
+                <p className="text-gray-500">VCツールID</p>
+                <p>{Object.values(currentUser.vcId)[0]?.trim()}</p>
+              </div>
             </div>
           </div>
-
-          {/* ゲームごとのInGameID */}
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-1">
-              <p className="text-gray-500">ゲーム内ID</p>
-              <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
-                編集
+          <div className="mb-6 border-2 border-dashed rounded p-4 shadow-sm">
+            <div className="flex justify-between items-center mb-2">
+              <p className="font-semibold text-gray-400">ゲームタイトルを追加</p>
+              <button className="text-xs text-green-600 border border-green-600 rounded-full px-2 py-0.5 hover:bg-green-50">
+                追加
               </button>
             </div>
-            <ul className="pl-4 list-disc text-sm">
-              {Object.entries(currentUser.ingameId).map(([game, id]) => (
-                <li key={game}>
-                  {game.charAt(0).toUpperCase() + game.slice(1)}: {id}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* VCツールごとのID */}
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-1">
-              <p className="text-gray-500">VCツールID</p>
-              <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
-                編集
-              </button>
-            </div>
-            <ul className="pl-4 list-disc text-sm">
-              {Object.entries(currentUser.vcId).map(([tool, id]) => (
-                <li key={tool}>
-                  {tool.charAt(0).toUpperCase() + tool.slice(1)}: {id}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
         <div className="h-28" />
