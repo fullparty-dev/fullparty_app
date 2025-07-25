@@ -7,9 +7,16 @@ import toast from 'react-hot-toast';
 
 
 const getDeviceIconPath = (device: string) => {
-  const lower = device.toLowerCase();
-  if (['pc', 'ps', 'switch', 'xbox'].includes(lower)) {
-    return `/assets/icons/devices/${lower}.png`;
+  const mapping: { [key: string]: string } = {
+    pc: 'PC',
+    ps: 'PS',
+    switch: 'Switch',
+    xbox: 'Xbox',
+  };
+  const key = device.toLowerCase();
+  const fileName = mapping[key];
+  if (fileName) {
+    return `/assets/icons/devices/${fileName}.png`;
   }
   return null;
 };
