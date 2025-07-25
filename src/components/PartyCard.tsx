@@ -68,48 +68,50 @@ export const PartyCard = ({
         {/* Show Join Button based on party and user state */}
         {showJoinButton && (
           <div className="absolute top-2 right-2">
-            {party.memberIds.includes(currentUserId) ? (
-              <button className="text-xs px-2 py-1 bg-gray-300 text-gray-600 rounded shadow-sm cursor-default" disabled>
-                参加中
-              </button>
-            ) : party.memberIds.length >= party.maxMembers ? (
-              <button className="text-xs px-2 py-1 bg-gray-300 text-gray-600 rounded shadow-sm cursor-default" disabled>
-                満員
-              </button>
-            ) : (
-              <button
-                className="text-xs px-2 py-1 bg-primary text-white rounded shadow-sm hover:opacity-90"
-                onClick={() => {
-                  const currentUser = mockUsers.find((u) => u.id === currentUserId);
-                  const acceptedDevices = party.acceptedDevices?.map((d) => d.toLowerCase()) || [];
-                  const userDevices = currentUser?.devices?.map((d) => d.toLowerCase()) || [];
+            <div className="flex justify-end">
+              {party.memberIds.includes(currentUserId) ? (
+                <button className="text-xs px-2 py-1 bg-gray-300 text-gray-600 rounded shadow-sm cursor-default" disabled>
+                  参加中
+                </button>
+              ) : party.memberIds.length >= party.maxMembers ? (
+                <button className="text-xs px-2 py-1 bg-gray-300 text-gray-600 rounded shadow-sm cursor-default" disabled>
+                  満員
+                </button>
+              ) : (
+                <button
+                  className="text-xs px-2 py-1 bg-primary text-white rounded shadow-sm hover:opacity-90"
+                  onClick={() => {
+                    const currentUser = mockUsers.find((u) => u.id === currentUserId);
+                    const acceptedDevices = party.acceptedDevices?.map((d) => d.toLowerCase()) || [];
+                    const userDevices = currentUser?.devices?.map((d) => d.toLowerCase()) || [];
 
-                  const isDeviceMatched = userDevices.some((device) => acceptedDevices.includes(device));
+                    const isDeviceMatched = userDevices.some((device) => acceptedDevices.includes(device));
 
 
-                  if (!isDeviceMatched) {
-                    toast.error('募集デバイスが対象外です');
-                    return;
-                  }
-
-                  const result = joinParty(party.id, currentUserId);
-                  if (result.success) {
-                    if (result.established) {
-                      if (result.matchedPartyId) {
-                        setMatchedPartyId(result.matchedPartyId);
-                      }
-                      toast.success(party.requireFull ? 'フルパーティ成立！' : 'パーティ成立！');
-                    } else {
-                      toast.success('参加しました');
+                    if (!isDeviceMatched) {
+                      toast.error('募集デバイスが対象外です');
+                      return;
                     }
-                  } else {
-                    toast.error(result.message || '参加できませんでした');
-                  }
-                }}
-              >
-                参加する
-              </button>
-            )}
+
+                    const result = joinParty(party.id, currentUserId);
+                    if (result.success) {
+                      if (result.established) {
+                        if (result.matchedPartyId) {
+                          setMatchedPartyId(result.matchedPartyId);
+                        }
+                        toast.success(party.requireFull ? 'フルパーティ成立！' : 'パーティ成立！');
+                      } else {
+                        toast.success('参加しました');
+                      }
+                    } else {
+                      toast.error(result.message || '参加できませんでした');
+                    }
+                  }}
+                >
+                  参加する
+                </button>
+              )}
+            </div>
             <div className="mt-2 text-xs text-gray-700">
               <div className="flex items-center gap-1">
                 <span>募集:</span>
