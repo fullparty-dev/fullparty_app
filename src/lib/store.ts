@@ -6,10 +6,18 @@ import type { User } from "../types";
 
 export type Mode = "casual" | "rank" | "other";
 
+// Result type for joinParty
+type JoinPartyResult = {
+  success: boolean;
+  message?: string;
+  established?: boolean;
+  matchedPartyId?: string;
+};
+
 type PartyStore = {
   parties: Party[];
   setParties: (parties: Party[]) => void;
-  joinParty: (partyId: string, userId: string) => { success: boolean; message?: string };
+  joinParty: (partyId: string, userId: string) => JoinPartyResult;
   leaveParty: (partyId: string, userId: string) => void;
   isUserInParty: (partyId: string, userId: string) => boolean;
   lastJoinedParty: Party | null;
@@ -42,8 +50,11 @@ export const usePartyStore = create<PartyStore>((set, get) => ({
             ...party,
             memberIds: [...party.memberIds, userId],
           };
-          // ✅ 満員になったら matchedPartyId を更新
-          if (updated.memberIds.length === updated.maxMembers) {
+          // ✅ 満員または部分マッチ（2人以上）で matchedPartyId を更新
+          if (
+            (updated.requireFull && updated.memberIds.length === updated.maxMembers) ||
+            (!updated.requireFull && updated.memberIds.length >= 2)
+          ) {
             matchedId = partyId;
           }
           console.log("🎯 updated party", updated);
@@ -60,7 +71,11 @@ export const usePartyStore = create<PartyStore>((set, get) => ({
       set({ matchedPartyId: matchedId });
     }
 
-    return { success: true };
+    return {
+      success: true,
+      established: matchedId !== null,
+      matchedPartyId: matchedId,
+    };
   },
   leaveParty: (partyId, userId) => {
     const updatedParties = get().parties.map((party) => {

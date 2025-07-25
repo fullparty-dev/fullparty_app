@@ -30,6 +30,7 @@ export const PartyCard = ({
   const emptySlots = party.maxMembers - members.length;
   const currentUserId = usePartyStore((state) => state.currentUserId);
   const joinParty = usePartyStore((state) => state.joinParty);
+  const setMatchedPartyId = usePartyStore((state) => state.setMatchedPartyId);
 
   const deviceOrder = ['pc', 'ps', 'ps4', 'ps5', 'switch', 'xbox', 'mobile'];
   const sortedAcceptedDevices =
@@ -72,10 +73,16 @@ export const PartyCard = ({
                   }
 
                   const result = joinParty(party.id, currentUserId);
-                  if (result.success && party.memberIds.length + 1 === party.maxMembers) {
-                    toast.success('フルパーティ成立！');
-                  }
-                  if (!result.success) {
+                  if (result.success) {
+                    if (result.established) {
+                      if (result.matchedPartyId) {
+                        setMatchedPartyId(result.matchedPartyId);
+                      }
+                      toast.success(party.requireFull ? 'フルパーティ成立！' : 'パーティ成立！');
+                    } else {
+                      toast.success('参加しました');
+                    }
+                  } else {
                     toast.error(result.message || '参加できませんでした');
                   }
                 }}
@@ -149,6 +156,10 @@ export const PartyCard = ({
           </div>
         </div>
 
+        {/* マッチング条件表示 */}
+        <div className="mt-2 text-xs text-gray-700 font-medium">
+          マッチング条件: {party.requireFull ? 'フルパで成立' : '集まり次第'}
+        </div>
         {/* Message */}
         <p className="mt-2 text-black">{party.message}</p>
       </div>
