@@ -100,6 +100,17 @@ export const usePartyStore = create<PartyStore>((set, get) => ({
   setMatchedPartyId: (id) => set({ matchedPartyId: id }),
 }));
 
+// --- Time Filter Store ---
+type TimeFilterStore = {
+  selectedTimeFilter: string;
+  setSelectedTimeFilter: (value: string) => void;
+};
+
+export const useTimeFilterStore = create<TimeFilterStore>((set) => ({
+  selectedTimeFilter: "now",
+  setSelectedTimeFilter: (value) => set({ selectedTimeFilter: value }),
+}));
+
 type ModeStore = {
   selectedMode: Mode;
   setSelectedMode: (mode: Mode) => void;

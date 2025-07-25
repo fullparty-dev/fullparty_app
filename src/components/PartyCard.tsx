@@ -45,11 +45,13 @@ export const PartyCard = ({
 
         <div className="flex text-xs text-gray-600 mb-1 space-x-16">
           <div>
-            {new Date(party.startAt).toLocaleTimeString('ja-JP', {
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: false,
-            })}~
+            {party.startAt
+              ? `${new Date(party.startAt).toLocaleTimeString('ja-JP', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: false,
+                })}~`
+              : '今すぐ'}
           </div>
           <div className="font-medium">
             {party.requireFull ? 'フルパで成立' : '集まり次第'}
