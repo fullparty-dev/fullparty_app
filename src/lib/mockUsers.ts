@@ -2,6 +2,16 @@ import { User } from "@/types";
 
 export const mockUsers: User[] = [
   {
+    id: "u0",
+    name: "かりん",
+    avatar: "https://ui-avatars.com/api/?name=かりん&background=random",
+    banner: "https://ui-avatars.com/api/?name=かりん&background=random",
+    ingameId: { "Apex Legends": "game_u0" },
+    vcId: { "Apex Legends": "vc_u0" },
+    clipUrl: "",
+    devices: ["PC"]
+  },
+  {
     id: "user1",
     name: "tasu9",
     avatar: "/avatar.png",
@@ -184,5 +194,65 @@ export const mockUsers: User[] = [
     vcId: { "Apex Legends": "vc_u17" },
     clipUrl: "",
     devices: ["Switch"]
+  },
+  {
+    id: "u18",
+    name: "ながた",
+    avatar: "https://ui-avatars.com/api/?name=ながた&background=random",
+    banner: "https://ui-avatars.com/api/?name=ながた&background=random",
+    ingameId: { "Apex Legends": "game_u18" },
+    vcId: { "Apex Legends": "vc_u18" },
+    clipUrl: "",
+    devices: ["PC"]
+  },
+  {
+    id: "u19",
+    name: "かとう",
+    avatar: "https://ui-avatars.com/api/?name=かとう&background=random",
+    banner: "https://ui-avatars.com/api/?name=かとう&background=random",
+    ingameId: { "Apex Legends": "game_u19" },
+    vcId: { "Apex Legends": "vc_u19" },
+    clipUrl: "",
+    devices: ["PS"]
+  },
+  {
+    id: "u20",
+    name: "えんどう",
+    avatar: "https://ui-avatars.com/api/?name=えんどう&background=random",
+    banner: "https://ui-avatars.com/api/?name=えんどう&background=random",
+    ingameId: { "Apex Legends": "game_u20" },
+    vcId: { "Apex Legends": "vc_u20" },
+    clipUrl: "",
+    devices: ["PC"]
+  },
+  {
+    id: "u21",
+    name: "ふじい",
+    avatar: "https://ui-avatars.com/api/?name=ふじい&background=random",
+    banner: "https://ui-avatars.com/api/?name=ふじい&background=random",
+    ingameId: { "Apex Legends": "game_u21" },
+    vcId: { "Apex Legends": "vc_u21" },
+    clipUrl: "",
+    devices: ["Switch"]
+  },
+  {
+    id: "u22",
+    name: "うえの",
+    avatar: "https://ui-avatars.com/api/?name=うえの&background=random",
+    banner: "https://ui-avatars.com/api/?name=うえの&background=random",
+    ingameId: { "Apex Legends": "game_u22" },
+    vcId: { "Apex Legends": "vc_u22" },
+    clipUrl: "",
+    devices: ["Xbox"]
+  },
+  {
+    id: "u23",
+    name: "たにぐち",
+    avatar: "https://ui-avatars.com/api/?name=たにぐち&background=random",
+    banner: "https://ui-avatars.com/api/?name=たにぐち&background=random",
+    ingameId: { "Apex Legends": "game_u23" },
+    vcId: { "Apex Legends": "vc_u23" },
+    clipUrl: "",
+    devices: ["PC"]
   }
 ];
