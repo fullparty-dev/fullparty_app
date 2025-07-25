@@ -134,5 +134,55 @@ export const mockUsers: User[] = [
     vcId: { "Apex Legends": "vc_u12" },
     clipUrl: "",
     devices: ["PS"]
+  },
+  {
+    id: "u13",
+    name: "はしもと",
+    avatar: "https://ui-avatars.com/api/?name=はしもと&background=random",
+    banner: "https://ui-avatars.com/api/?name=はしもと&background=random",
+    ingameId: { "Apex Legends": "game_u13" },
+    vcId: { "Apex Legends": "vc_u13" },
+    clipUrl: "",
+    devices: ["PC"]
+  },
+  {
+    id: "u14",
+    name: "あべ",
+    avatar: "https://ui-avatars.com/api/?name=あべ&background=random",
+    banner: "https://ui-avatars.com/api/?name=あべ&background=random",
+    ingameId: { "Apex Legends": "game_u14" },
+    vcId: { "Apex Legends": "vc_u14" },
+    clipUrl: "",
+    devices: ["PS"]
+  },
+  {
+    id: "u15",
+    name: "たかぎ",
+    avatar: "https://ui-avatars.com/api/?name=たかぎ&background=random",
+    banner: "https://ui-avatars.com/api/?name=たかぎ&background=random",
+    ingameId: { "Apex Legends": "game_u15" },
+    vcId: { "Apex Legends": "vc_u15" },
+    clipUrl: "",
+    devices: ["Xbox"]
+  },
+  {
+    id: "u16",
+    name: "ひらの",
+    avatar: "https://ui-avatars.com/api/?name=ひらの&background=random",
+    banner: "https://ui-avatars.com/api/?name=ひらの&background=random",
+    ingameId: { "Apex Legends": "game_u16" },
+    vcId: { "Apex Legends": "vc_u16" },
+    clipUrl: "",
+    devices: ["Xbox"]
+  },
+  {
+    id: "u17",
+    name: "おかだ",
+    avatar: "https://ui-avatars.com/api/?name=おかだ&background=random",
+    banner: "https://ui-avatars.com/api/?name=おかだ&background=random",
+    ingameId: { "Apex Legends": "game_u17" },
+    vcId: { "Apex Legends": "vc_u17" },
+    clipUrl: "",
+    devices: ["Switch"]
   }
 ];

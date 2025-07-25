@@ -23,6 +23,8 @@ export type Party = {
   rankRange?: string[];
   vcTool: string;
   message: string;
+  playStyleTag?: 'キルムーブ' | 'アンチムーブ' | 'ハイド' | 'エンジョイ';
+  ageTag?: '10代歓迎' | '20代歓迎' | '30代以上歓迎' | '誰でも歓迎';
 };
 
 export type User = {
@@ -39,3 +41,7 @@ export type User = {
   clipUrl: string;
   devices: Device[];
 };
+
+export type DisplayItem =
+  | { type: 'member'; data: User; isHost: boolean }
+  | { type: 'empty'; key: string };

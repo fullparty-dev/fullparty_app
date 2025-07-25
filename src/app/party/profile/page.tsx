@@ -68,16 +68,14 @@ export default function Profile() {
               </button>
             </div>
             <div className="text-sm pl-1 space-x-1">
-              {currentUser.devices?.map((d) => {
-                const emojiMap: { [key: string]: string } = {
-                  PC: "💻",
-                  PS: "🎮",
-                  Switch: "📱",
-                };
-                return (
-                  <span key={d}>{emojiMap[d] || d}</span>
-                );
-              })}
+              {currentUser.devices?.map((d) => (
+                <img
+                  key={d}
+                  src={`/assets/icons/devices/${d}.png`}
+                  alt={d}
+                  className="inline w-4 h-4 mr-1"
+                />
+              ))}
             </div>
           </div>
 

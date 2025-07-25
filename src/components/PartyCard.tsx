@@ -5,14 +5,13 @@ import { mockUsers } from '../lib/mockUsers';
 import { usePartyStore } from '../lib/store';
 import toast from 'react-hot-toast';
 
-const deviceEmojiMap: Record<string, string> = {
-  pc: '💻',
-  ps: '🎮',
-  ps4: '🎮',
-  ps5: '🎮',
-  switch: '🎮',
-  xbox: '🎮',
-  mobile: '📱',
+
+const getDeviceIconPath = (device: string) => {
+  const lower = device.toLowerCase();
+  if (['pc', 'ps', 'switch', 'xbox'].includes(lower)) {
+    return `/assets/icons/devices/${lower}.png`;
+  }
+  return null;
 };
 
 export const PartyCard = ({
@@ -44,6 +43,18 @@ export const PartyCard = ({
       {/* 既存の PartyCard コンテンツ */}
       <div className="border border-gray-200 rounded-xl p-3 mb-4 shadow bg-white text-black w-full max-w-xl text-sm relative">
 
+        <div className="flex text-xs text-gray-600 mb-1 space-x-16">
+          <div>
+            {new Date(party.startAt).toLocaleTimeString('ja-JP', {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
+            })}~
+          </div>
+          <div className="font-medium">
+            {party.requireFull ? 'フルパで成立' : '集まり次第'}
+          </div>
+        </div>
 
         {/* Show Join Button based on party and user state */}
         {showJoinButton && (
@@ -68,7 +79,7 @@ export const PartyCard = ({
 
 
                   if (!isDeviceMatched) {
-                    toast.error('デバイスが募集対象外です');
+                    toast.error('募集デバイスが対象外です');
                     return;
                   }
 
@@ -90,76 +101,105 @@ export const PartyCard = ({
                 参加する
               </button>
             )}
+            <div className="mt-2 text-xs text-gray-700">
+              <div className="flex items-center gap-1">
+                <span>募集:</span>
+                {sortedAcceptedDevices.length > 0 ? (
+                  sortedAcceptedDevices.map((d) => {
+                    const path = getDeviceIconPath(d);
+                    return path ? (
+                      <img key={d} src={path} alt={d} className="w-4 h-4" />
+                    ) : (
+                      <span key={d}>❓</span>
+                    );
+                  })
+                ) : (
+                  <span>未設定</span>
+                )}
+              </div>
+              <div>VC: {party.vcTool}</div>
+            </div>
           </div>
         )}
 
         {/* Members section with time on the same line */}
-        <div className="flex justify-between items-end mt-1">
-          <div className="flex items-end space-x-2">
-            {members.map((m, index) => (
-              <div key={m.id} className="flex flex-col items-center relative w-10">
-                {index === 0 && (
-                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-xs">👑</span>
-                )}
-                <img
-                  src={m.avatar}
-                  alt={m.name}
-                  className="w-10 h-10 rounded-full border-2 border-white"
-                  title={m.name}
-                />
-                <span className="text-[10px] text-gray-500">
-                  {m.devices?.map((d) => deviceEmojiMap[d.toLowerCase()] || '❓').join(' ')}
-                </span>
-              </div>
-            ))}
-            {Array.from({ length: emptySlots }).map((_, i) => (
-              <div key={`empty-${i}`} className="flex flex-col items-center w-10 text-gray-400">
-                <div className="w-10 h-10 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-100">
-                  ?
+        <div className="flex mt-1 space-x-2">
+          {[
+            ...members.map((m, index) => ({
+              type: 'member',
+              data: m,
+              isHost: index === 0,
+            })),
+            ...Array.from({ length: emptySlots }).map((_, i) => ({
+              type: 'empty',
+              key: `empty-${i}`,
+            })),
+          ].map((item) => {
+            if (item.type === 'member' && 'data' in item && 'isHost' in item) {
+              return (
+                <div key={item.data.id} className="flex flex-col items-center relative w-10">
+                  {item.isHost && (
+                    <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-xs">👑</span>
+                  )}
+                  <img
+                    src={item.data.avatar}
+                    alt={item.data.name}
+                    className="w-10 h-10 rounded-full border-2 border-white"
+                    title={item.data.name}
+                  />
+                  <div className="flex gap-0.5 mt-0.5">
+                    {item.data.devices?.map((d) => {
+                      const path = getDeviceIconPath(d);
+                      return path ? (
+                        <img key={d} src={path} alt={d} className="w-4 h-4" />
+                      ) : (
+                        <span key={d} className="text-[10px]">❓</span>
+                      );
+                    })}
+                  </div>
                 </div>
-                <span className="text-[10px] text-transparent">placeholder</span>
-              </div>
-            ))}
-          </div>
-          <div className="text-xs text-gray-500 pr-1 pb-1">
-            {new Date(party.startAt).toLocaleTimeString('ja-JP', {
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: false,
-            })}~
+              );
+            } else {
+              return (
+                <div key={'key' in item ? item.key : 'fallback-key'} className="flex flex-col items-center w-10 text-gray-400">
+                  <div className="w-10 h-10 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-100">
+                    ?
+                  </div>
+                  <span className="text-[10px] text-transparent">placeholder</span>
+                </div>
+              );
+            }
+          })}
+        </div>
+
+        {/* Rank and combined PlayStyleTag and AgeTag section */}
+        <div className="mt-2 text-xs text-gray-700 flex justify-between items-center">
+          {party.type === 'rank' ? (
+            <div>
+              <span>🏆 </span>
+              <span>
+                {Array.isArray(party.rankRange) && party.rankRange.length === 2
+                  ? `${party.rankRange[0]}〜${party.rankRange[1]}`
+                  : party.rankRange}
+              </span>
+            </div>
+          ) : <div />}
+
+          <div className="flex gap-2">
+            {party.playStyleTag && (
+              <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full whitespace-nowrap">
+                {party.playStyleTag}
+              </span>
+            )}
+            {party.ageTag && (
+              <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full whitespace-nowrap">
+                {party.ageTag}
+              </span>
+            )}
           </div>
         </div>
 
-        {/* Rank section */}
-        {party.type === 'rank' && (
-          <div className="mt-2 text-xs text-gray-700">
-            <span>🏆 </span>
-            <span>
-              {Array.isArray(party.rankRange) && party.rankRange.length === 2
-                ? `${party.rankRange[0]}〜${party.rankRange[1]}`
-                : party.rankRange}
-            </span>
-          </div>
-        )}
-
-        {/* Details section */}
-        <div className="mt-2 flex flex-wrap gap-14 text-xs text-gray-700">
-          <div className="min-w-[100px]">
-            <span>VC: {party.vcTool}</span>
-          </div>
-          <div className="min-w-[100px]">
-            <span>
-              募集: {sortedAcceptedDevices.length > 0
-                ? sortedAcceptedDevices.map((d) => deviceEmojiMap[d.toLowerCase()] || '❓').join(' ')
-                : '未設定'}
-            </span>
-          </div>
-        </div>
-
-        {/* マッチング条件表示 */}
-        <div className="mt-2 text-xs text-gray-700 font-medium">
-          マッチング条件: {party.requireFull ? 'フルパで成立' : '集まり次第'}
-        </div>
+        {/* マッチング条件表示 (removed as now shown above) */}
         {/* Message */}
         <p className="mt-2 text-black">{party.message}</p>
       </div>

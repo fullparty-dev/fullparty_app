@@ -1,11 +1,13 @@
 "use client";
 
 import SmartphoneLayout from "@/components/SmartphoneLayout";
+import React from "react";
 import { PartyCard } from "@/components/PartyCard";
 import { useUserStore, usePartyStore } from "@/lib/store";
 import { useEvaluationStore } from "@/lib/store";
 import Link from "next/link";
 import { useEffect } from "react";
+import type { DisplayItem } from "@/types";
 
 export default function PartyPage() {
   const user = useUserStore((state) => state.getCurrentUser());
@@ -78,7 +80,7 @@ export default function PartyPage() {
                     return (
                       <div
                         key={member.id}
-                        className={`flex items-center py-3 space-x-3 text-black w-full px-4 ${member.id === matchedParty.hostId ? "border-b border-gray-300" : ""}`}
+                        className="flex items-center py-3 space-x-3 text-black w-full px-4"
                       >
                         <div className="flex flex-col items-center w-14">
                           <div className="relative w-10 h-10">
@@ -88,10 +90,10 @@ export default function PartyPage() {
                             )}
                           </div>
                           <div className="mt-1 text-sm">
-                            {member.devices?.[0] === "PC" && "💻"}
-                            {member.devices?.[0] === "PS" && "🎮"}
-                            {member.devices?.[0] === "Switch" && "📱"}
-                            {member.devices?.[0] === "Xbox" && "🕹️"}
+                            {member.devices?.[0] === "PC" && <img src="/assets/icons/devices/PC.png" alt="PC" className="w-5 h-5" />}
+                            {member.devices?.[0] === "PS" && <img src="/assets/icons/devices/PS.png" alt="PS" className="w-5 h-5" />}
+                            {member.devices?.[0] === "Switch" && <img src="/assets/icons/devices/Switch.png" alt="Switch" className="w-5 h-5" />}
+                            {member.devices?.[0] === "Xbox" && <img src="/assets/icons/devices/Xbox.png" alt="Xbox" className="w-5 h-5" />}
                           </div>
                         </div>
                         <div className="flex flex-col w-full text-sm">
@@ -133,34 +135,47 @@ export default function PartyPage() {
                             )}
                           </div>
                           <span className="text-xs">ゲームID: {member.ingameId?.["Apex Legends"] || "未設定"}</span>
-                          <span className="text-xs">VC ID: {member.vcId?.["Apex Legends"] || "未設定"}</span>
+                          {matchedParty.vcTool !== "なし" && (
+                            <span className="text-xs">VC ID: {member.vcId?.["Apex Legends"] || "未設定"}</span>
+                          )}
                         </div>
                       </div>
                     );
                   };
 
+                  const displayItems: DisplayItem[] = [
+                    ...(host ? [{ type: "member" as const, data: host, isHost: true }] : []),
+                    ...others.map(o => ({ type: "member" as const, data: o, isHost: false })),
+                    ...Array.from({ length: emptySlots }).map((_, i) => ({ type: "empty" as const, key: `empty-${i}` })),
+                    ...(currentUser ? [{ type: "member" as const, data: currentUser, isHost: false }] : []),
+                  ];
+
                   return (
                     <>
-                      {host && renderMemberCard(host)}
-                      {others.map(renderMemberCard)}
-                      {Array.from({ length: emptySlots }).map((_, i) => (
-                        <div key={`empty-${i}`} className="flex items-center py-3 space-x-3 text-black w-full px-4 border-b border-gray-300">
-                          <div className="flex flex-col items-center w-14">
-                            <div className="w-10 h-10 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-100">
-                              ?
+                      {displayItems.map((item, index) => (
+                        <React.Fragment key={item.type === "member" ? item.data.id : item.key}>
+                          {index > 0 && <hr className="border-t border-gray-300 mx-4" />}
+                          {item.type === "member" ? (
+                            renderMemberCard(item.data)
+                          ) : (
+                            <div className="flex items-center py-3 space-x-3 text-black w-full px-4">
+                              <div className="flex flex-col items-center w-14">
+                                <div className="w-10 h-10 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-100">
+                                  ?
+                                </div>
+                                <div className="mt-1 text-sm text-gray-400">--</div>
+                              </div>
+                              <div className="flex flex-col w-full text-sm text-gray-400">
+                                <div className="flex items-center justify-between">
+                                  <span className="font-semibold">空き枠</span>
+                                </div>
+                                <span className="text-xs">ゲームID: --</span>
+                                <span className="text-xs">VC ID: --</span>
+                              </div>
                             </div>
-                            <div className="mt-1 text-sm text-gray-400">--</div>
-                          </div>
-                          <div className="flex flex-col w-full text-sm text-gray-400">
-                            <div className="flex items-center justify-between">
-                              <span className="font-semibold">空き枠</span>
-                            </div>
-                            <span className="text-xs">ゲームID: --</span>
-                            <span className="text-xs">VC ID: --</span>
-                          </div>
-                        </div>
+                          )}
+                        </React.Fragment>
                       ))}
-                      {currentUser && renderMemberCard(currentUser)}
                     </>
                   );
                 })()}
