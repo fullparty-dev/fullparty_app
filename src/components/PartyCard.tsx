@@ -220,12 +220,12 @@ export const PartyCard = ({
 
           <div className="flex gap-2">
             {party.playStyleTag && (
-              <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full whitespace-nowrap text-[10px]">
+              <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full whitespace-nowrap text-[8px]">
                 {party.playStyleTag}
               </span>
             )}
             {party.ageTag && (
-              <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full whitespace-nowrap text-[10px]">
+              <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full whitespace-nowrap text-[8px]">
                 {party.ageTag}
               </span>
             )}
