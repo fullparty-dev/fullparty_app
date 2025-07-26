@@ -321,7 +321,7 @@ export default function PartySearchPage() {
                   <button
                     key={device}
                     onClick={() => toggleDevice(device)}
-                    className={`flex items-center space-x-1 px-2 py-1 rounded-full text-sm transition-colors ${
+                    className={`flex items-center space-x-1 px-1 py-0.5 rounded-full text-xs transition-colors ${
                       selectedDevices.includes(device)
                         ? "bg-orange-500 text-white"
                         : "bg-gray-100 text-gray-600"
@@ -337,8 +337,8 @@ export default function PartySearchPage() {
             {/* VCツール選択 */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">VCツール</label>
-              <div className="flex gap-1 flex-wrap">
-                {["なし", "Discord", "PS Party Chat", "Switch Online", "LINE", "ゲーム内", "その他"].map((tool) => (
+              <div className="flex gap-1 overflow-x-auto whitespace-nowrap no-scrollbar">
+                {["なし", "ゲーム内", "Discord", "PS Party", "Switch", "その他"].map((tool) => (
                   <button
                     key={tool}
                     onClick={() => setSelectedVcTool(tool)}
