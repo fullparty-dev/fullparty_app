@@ -1,10 +1,11 @@
 "use client";
 import SmartphoneLayout from "@/components/SmartphoneLayout";
-import { useUserStore } from "@/lib/store";
+import { useUserStore, usePartyTabStore } from "@/lib/store";
 import { mockUsers } from "@/lib/mockUsers";
 
 export default function Profile() {
   const currentUser = useUserStore((state) => state.getCurrentUser());
+  const selectedGameTitle = usePartyTabStore((state) => state.selectedGameTitle);
 
   if (!currentUser) {
     return <div className="p-4">ユーザー情報を取得できませんでした。</div>;
@@ -79,7 +80,7 @@ export default function Profile() {
           {/* APEXカード内にゲームIDとVCツールID統合 */}
           <div className="mb-6 border rounded p-4 shadow-sm">
             <div className="flex justify-between items-center mb-2">
-              <p className="font-semibold text-black">Apex Legends</p>
+              <p className="font-semibold text-black">{selectedGameTitle}</p>
               <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
                 編集
               </button>
@@ -88,11 +89,11 @@ export default function Profile() {
             <div className="text-sm space-y-2">
               <div className="flex justify-between">
                 <p className="text-gray-500">ゲーム内ID</p>
-                <p>{Object.values(currentUser.ingameId)[0]?.trim()}</p>
+                <p>{currentUser.ingameId[selectedGameTitle]?.trim()}</p>
               </div>
               <div className="flex justify-between">
                 <p className="text-gray-500">VCツールID</p>
-                <p>{Object.values(currentUser.vcId)[0]?.trim()}</p>
+                <p>{currentUser.vcId[selectedGameTitle]?.trim()}</p>
               </div>
             </div>
           </div>

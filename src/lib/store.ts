@@ -25,11 +25,23 @@ type PartyStore = {
   currentUserId: string;
   matchedPartyId: string | null;
   setMatchedPartyId: (id: string | null) => void;
+  selectedGameTitle: string;
+  selectedMode: Mode;
+  selectedTimeFilter: string;
+  setSelectedGameTitle: (title: string) => void;
+  setSelectedMode: (mode: Mode) => void;
+  setSelectedTimeFilter: (time: string) => void;
 };
 
 export const usePartyStore = create<PartyStore>((set, get) => ({
   parties: mockParties,
   setParties: (parties) => set({ parties }),
+  selectedGameTitle: 'Apex Legends',
+  selectedMode: 'casual',
+  selectedTimeFilter: 'now',
+  setSelectedGameTitle: (title) => set({ selectedGameTitle: title }),
+  setSelectedMode: (mode) => set({ selectedMode: mode }),
+  setSelectedTimeFilter: (time) => set({ selectedTimeFilter: time }),
   joinParty: (partyId, userId) => {
     console.log("✅ joinParty called", { partyId, userId });
 
@@ -100,26 +112,6 @@ export const usePartyStore = create<PartyStore>((set, get) => ({
   setMatchedPartyId: (id) => set({ matchedPartyId: id }),
 }));
 
-// --- Time Filter Store ---
-type TimeFilterStore = {
-  selectedTimeFilter: string;
-  setSelectedTimeFilter: (value: string) => void;
-};
-
-export const useTimeFilterStore = create<TimeFilterStore>((set) => ({
-  selectedTimeFilter: "now",
-  setSelectedTimeFilter: (value) => set({ selectedTimeFilter: value }),
-}));
-
-type ModeStore = {
-  selectedMode: Mode;
-  setSelectedMode: (mode: Mode) => void;
-};
-
-export const useModeStore = create<ModeStore>((set) => ({
-  selectedMode: "casual",
-  setSelectedMode: (mode) => set({ selectedMode: mode }),
-}));
 
 type UserStore = {
   currentUserId: string;
@@ -178,4 +170,30 @@ export const useEvaluationStore = create<EvaluationStore>((set, get) => ({
     delete updated[partyId];
     set({ evaluations: updated });
   },
+}));
+
+
+// --- Party Tab Store ---
+type PartyTabStore = {
+  selectedMode: Mode;
+  selectedTimeFilter: string;
+  selectedGameTitle: string;
+  setSelectedMode: (mode: Mode) => void;
+  setSelectedTimeFilter: (time: string) => void;
+  setSelectedGameTitle: (title: string) => void;
+  getSelectedMode: () => Mode;
+  getSelectedTimeFilter: () => string;
+  getSelectedGameTitle: () => string;
+};
+
+export const usePartyTabStore = create<PartyTabStore>((set, get) => ({
+  selectedMode: undefined as Mode | undefined,
+  selectedTimeFilter: undefined,
+  selectedGameTitle: undefined,
+  setSelectedMode: (mode) => set({ selectedMode: mode }),
+  setSelectedTimeFilter: (time) => set({ selectedTimeFilter: time }),
+  setSelectedGameTitle: (title) => set({ selectedGameTitle: title }),
+  getSelectedMode: () => get().selectedMode || 'casual',
+  getSelectedTimeFilter: () => get().selectedTimeFilter || 'now',
+  getSelectedGameTitle: () => get().selectedGameTitle || 'Apex Legends',
 }));

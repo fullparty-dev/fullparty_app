@@ -3,23 +3,20 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { usePartyTabStore } from "@/lib/store";
 import { usePartyStore } from "@/lib/store";
-import { useTimeFilterStore } from "@/lib/store";
 import { PartyCard } from "@/components/PartyCard";
-import { useModeStore } from "@/lib/store";
 import SmartphoneLayout from "@/components/SmartphoneLayout";
 
 export default function PartySearchPage() {
-  const mode = useModeStore((state) => state.selectedMode);
   const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState("カジュアル");
+  const selectedGameTitle = usePartyTabStore((state) => state.selectedGameTitle) || "カジュアル";
+  const setSelectedGameTitle = usePartyTabStore((state) => state.setSelectedGameTitle);
+  const selectedTimeFilter = usePartyTabStore((state) => state.selectedTimeFilter) || "now";
+  const setSelectedTimeFilter = usePartyTabStore((state) => state.setSelectedTimeFilter);
   const parties = usePartyStore((state) => state.parties);
   // Matched party and error handling
   const matchedPartyId = usePartyStore((state) => state.matchedPartyId);
-
-  const selectedTimeFilter = useTimeFilterStore((state) => state.selectedTimeFilter);
-  const setSelectedTimeFilter = useTimeFilterStore((state) => state.setSelectedTimeFilter);
-
 
   return (
     <SmartphoneLayout>
@@ -28,13 +25,13 @@ export default function PartySearchPage() {
         <div className="p-3 border-b border-gray-300 text-sm text-gray-800 font-medium">
           <div className="flex justify-between items-center mb-2 relative">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-800">開始</span>
+              <span className="text-sm text-gray-800 font-bold">開始</span>
               <select
                 value={selectedTimeFilter}
                 onChange={(e) => {
                   setSelectedTimeFilter(e.target.value);
                 }}
-                className="text-sm font-semibold text-gray-800 border border-gray-300 rounded px-2 py-0.5 bg-white shadow-sm hover:bg-gray-50"
+                className="text-sm font-semibold border rounded px-2 py-0.5 shadow-sm hover:bg-gray-50 bg-white text-gray-800 border-gray-300"
               >
                 <option value="now">今すぐ</option>
                 {Array.from({ length: 96 }).map((_, i) => {
@@ -50,15 +47,21 @@ export default function PartySearchPage() {
             <div className="absolute left-1/2 -translate-x-1/2 text-sm font-semibold text-gray-800">
               APEX
             </div>
-            <button className="px-2 py-1 text-xs border rounded">フィルター</button>
+            <button
+              className="ml-auto text-xs bg-gray-100 text-gray-800 border border-gray-300 rounded px-2 py-1 shadow-sm hover:bg-gray-200"
+            >
+              フィルター
+            </button>
           </div>
           <div className="flex bg-gray-200 rounded-full overflow-hidden">
             {["カジュアル", "ランク", "その他"].map((label) => (
               <button
                 key={label}
-                onClick={() => setSelectedCategory(label)}
+                onClick={() => {
+                  setSelectedGameTitle(label);
+                }}
                 className={`w-1/3 py-1 text-xs ${
-                  selectedCategory === label
+                  selectedGameTitle === label
                     ? "bg-white text-gray-800 border-b-2 border-primary"
                     : "text-gray-500"
                 }`}
@@ -69,7 +72,7 @@ export default function PartySearchPage() {
           </div>
         </div>
 
-        {/* カード一覧 */}
+        {/* 本文（カード一覧） */}
         <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2 pb-28">
           {parties
             .filter((p) => {
@@ -79,7 +82,7 @@ export default function PartySearchPage() {
                 "その他": "other",
               };
 
-              const isMatchingCategory = p.type === categoryMap[selectedCategory];
+              const isMatchingCategory = p.type === categoryMap[selectedGameTitle];
 
               if (selectedTimeFilter === "now") {
                 return isMatchingCategory;
@@ -107,14 +110,12 @@ export default function PartySearchPage() {
               };
 
               if (selectedTimeFilter === "now") {
-                // "今すぐ" を優先、次に時刻順
                 const aIsNow = !a.startAt;
                 const bIsNow = !b.startAt;
                 if (aIsNow && !bIsNow) return -1;
                 if (!aIsNow && bIsNow) return 1;
                 return getTime(a) - getTime(b);
               } else {
-                // 指定時刻順
                 return getTime(a) - getTime(b);
               }
             })
@@ -125,7 +126,10 @@ export default function PartySearchPage() {
 
         {/* 投稿ボタン */}
         <div className="absolute bottom-24 right-4">
-          <button className="text-3xl bg-primary text-white rounded-full w-12 h-12 shadow-md flex items-center justify-center leading-none">
+          <button
+            onClick={() => router.push("/party/search/post")}
+            className="text-3xl bg-primary text-white rounded-full w-12 h-12 shadow-md flex items-center justify-center leading-none"
+          >
             <span className="-translate-y-0.5 relative">+</span>
           </button>
         </div>

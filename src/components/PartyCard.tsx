@@ -44,6 +44,17 @@ export const PartyCard = ({
       deviceOrder.indexOf(a.toLowerCase()) - deviceOrder.indexOf(b.toLowerCase())
     ) || [];
 
+  const rankColors: { [key: string]: string } = {
+    ルーキー: '#8B4513',
+    ブロンズ: '#A0522D',
+    シルバー: '#C0C0C0',
+    ゴールド: '#FFD700',
+    プラチナ: '#00CED1',
+    ダイヤ: '#4169E1',
+    マスター: '#8A2BE2',
+    プレデター: '#FF0000',
+  };
+
   return (
     <div>
 
@@ -51,7 +62,7 @@ export const PartyCard = ({
       <div className="border border-gray-200 rounded-xl p-3 mb-4 shadow bg-white text-black w-full max-w-xl text-sm relative">
 
         <div className="flex text-xs text-gray-600 mb-1 space-x-16">
-          <div>
+          <div className="font-bold">
             {party.startAt
               ? `${new Date(party.startAt).toLocaleTimeString('ja-JP', {
                   hour: '2-digit',
@@ -60,7 +71,7 @@ export const PartyCard = ({
                 })}~`
               : '今すぐ'}
           </div>
-          <div className="font-medium">
+          <div className="font-bold">
             {party.requireFull ? 'フルパで成立' : '集まり次第'}
           </div>
         </div>
@@ -187,23 +198,34 @@ export const PartyCard = ({
         <div className="mt-2 text-xs text-gray-700 flex justify-between items-center">
           {party.type === 'rank' ? (
             <div>
-              <span>🏆 </span>
               <span>
-                {Array.isArray(party.rankRange) && party.rankRange.length === 2
-                  ? `${party.rankRange[0]}〜${party.rankRange[1]}`
-                  : party.rankRange}
+                {Array.isArray(party.rankRange) && party.rankRange.length > 0 ? (
+                  party.rankRange.length === 1 ? (
+                    <div className="flex gap-1 items-center">
+                      <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: rankColors[party.rankRange[0]] }} />
+                      <span className="text-xs">{party.rankRange[0]}</span>
+                    </div>
+                  ) : (
+                    <div className="flex gap-1 items-center">
+                      <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: rankColors[party.rankRange[0]] }} />
+                      <span className="text-xs">{party.rankRange[0]}〜</span>
+                      <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: rankColors[party.rankRange[1]] }} />
+                      <span className="text-xs">{party.rankRange[1]}</span>
+                    </div>
+                  )
+                ) : null}
               </span>
             </div>
           ) : <div />}
 
           <div className="flex gap-2">
             {party.playStyleTag && (
-              <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full whitespace-nowrap">
+              <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full whitespace-nowrap text-[10px]">
                 {party.playStyleTag}
               </span>
             )}
             {party.ageTag && (
-              <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full whitespace-nowrap">
+              <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full whitespace-nowrap text-[10px]">
                 {party.ageTag}
               </span>
             )}
