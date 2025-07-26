@@ -128,7 +128,7 @@ export default function PartySearchPage() {
         <div className="absolute bottom-24 right-4">
           <button
             onClick={() => router.push("/party/search/post")}
-            className="text-3xl bg-primary text-white rounded-full w-12 h-12 shadow-md flex items-center justify-center leading-none"
+            className="text-3xl bg-orange-500 text-white rounded-full w-12 h-12 shadow-md flex items-center justify-center leading-none"
           >
             <span className="-translate-y-0.5 relative">+</span>
           </button>

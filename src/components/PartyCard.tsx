@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import { Party } from '../types';
 import { mockUsers } from '../lib/mockUsers';
 import { usePartyStore } from '../lib/store';
@@ -159,7 +160,11 @@ export const PartyCard = ({
           ].map((item) => {
             if (item.type === 'member' && 'data' in item && 'isHost' in item) {
               return (
-                <div key={item.data.id} className="flex flex-col items-center relative w-10">
+                <Link
+                  key={item.data.id}
+                  href={item.data.id === currentUserId ? '/party/profile' : `/party/profile/${item.data.id}`}
+                  className="flex flex-col items-center relative w-10"
+                >
                   {item.isHost && (
                     <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-xs">👑</span>
                   )}
@@ -179,7 +184,7 @@ export const PartyCard = ({
                       );
                     })}
                   </div>
-                </div>
+                </Link>
               );
             } else {
               return (

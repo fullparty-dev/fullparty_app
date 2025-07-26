@@ -1,10 +1,12 @@
 "use client";
 import SmartphoneLayout from "@/components/SmartphoneLayout";
-import { useUserStore } from "@/lib/store";
+import { useParams } from "next/navigation";
 import { mockUsers } from "@/lib/mockUsers";
 
 export default function Profile() {
-  const currentUser = useUserStore((state) => state.getCurrentUser());
+  const params = useParams();
+  const userId = Array.isArray(params.userId) ? params.userId[0] : params.userId;
+  const currentUser = mockUsers.find((user) => user.id === userId);
 
   if (!currentUser) {
     return <div className="p-4">ユーザー情報を取得できませんでした。</div>;
@@ -32,8 +34,8 @@ export default function Profile() {
           <div className="mt-8 mb-2">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold">{currentUser.name}</h2>
-              <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
-                プロフィールを編集
+              <button className="text-sm text-blue-600 border border-blue-600 rounded-full px-2 py-0.5">
+                ✉️メッセージを送る
               </button>
             </div>
             <p className="text-gray-600 text-sm">よろしくお願いします！</p>
@@ -75,42 +77,6 @@ export default function Profile() {
           </div>
 
           {/* デバイス表示はユーザーIDの隣に統合 */}
-
-          {/* 登録済みゲームタイトルごとにゲームIDとVCツールIDを表示 */}
-          <p className="text-xs text-gray-500 mb-2">
-            ※ 以下の情報は、マッチング成立時にのみ他プレイヤーに公開されます。
-          </p>
-          {Object.keys(currentUser.ingameId).map((title) => (
-            <div key={title} className="mb-6 border rounded p-4 shadow-sm">
-              <div className="flex justify-between items-center mb-2">
-                <div>
-                  <p className="font-semibold text-black">{title}</p>
-                </div>
-                <button className="text-xs text-blue-600 border border-blue-600 rounded-full px-2 py-0.5 hover:bg-blue-50">
-                  編集
-                </button>
-              </div>
-
-              <div className="text-sm space-y-2">
-                <div className="flex justify-between">
-                  <p className="text-gray-500">ゲーム内ID</p>
-                  <p>{currentUser.ingameId[title]?.trim()}</p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-gray-500">VCツールID</p>
-                  <p>{currentUser.vcId[title]?.trim()}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-          <div className="mb-6 border-2 border-dashed rounded p-4 shadow-sm">
-            <div className="flex justify-between items-center mb-2">
-              <p className="font-semibold text-gray-400">ゲームタイトルを追加</p>
-              <button className="text-xs text-green-600 border border-green-600 rounded-full px-2 py-0.5 hover:bg-green-50">
-                追加
-              </button>
-            </div>
-          </div>
         </div>
         <div className="h-28" />
       </div>

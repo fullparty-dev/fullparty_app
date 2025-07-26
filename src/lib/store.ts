@@ -25,23 +25,11 @@ type PartyStore = {
   currentUserId: string;
   matchedPartyId: string | null;
   setMatchedPartyId: (id: string | null) => void;
-  selectedGameTitle: string;
-  selectedMode: Mode;
-  selectedTimeFilter: string;
-  setSelectedGameTitle: (title: string) => void;
-  setSelectedMode: (mode: Mode) => void;
-  setSelectedTimeFilter: (time: string) => void;
 };
 
 export const usePartyStore = create<PartyStore>((set, get) => ({
   parties: mockParties,
   setParties: (parties) => set({ parties }),
-  selectedGameTitle: 'Apex Legends',
-  selectedMode: 'casual',
-  selectedTimeFilter: 'now',
-  setSelectedGameTitle: (title) => set({ selectedGameTitle: title }),
-  setSelectedMode: (mode) => set({ selectedMode: mode }),
-  setSelectedTimeFilter: (time) => set({ selectedTimeFilter: time }),
   joinParty: (partyId, userId) => {
     console.log("✅ joinParty called", { partyId, userId });
 

@@ -37,7 +37,9 @@ export default function PartyPage() {
   return (
     <SmartphoneLayout>
       <div className="w-full bg-white border-b border-gray-300 px-4 py-3 flex items-center justify-between sticky top-0 z-20">
-        <img src="/avatar.png" alt="My Icon" className="w-8 h-8 rounded-full" />
+        <Link href="/party/profile">
+          <img src="/avatar.png" alt="My Icon" className="w-8 h-8 rounded-full cursor-pointer" />
+        </Link>
         <div className="flex bg-gray-200 rounded-full p-1 text-xs font-medium">
           <button className="px-3 py-1 rounded-full bg-white shadow text-black">参加中</button>
           <button className="px-3 py-1 rounded-full text-black">フレンド</button>
@@ -84,7 +86,9 @@ export default function PartyPage() {
                       >
                         <div className="flex flex-col items-center w-14">
                           <div className="relative w-10 h-10">
-                            <img src={member.avatar} alt={member.name} className="w-10 h-10 rounded-full" />
+                            <Link href={member.id === currentUserId ? "/party/profile" : `/party/profile/${member.id}`}>
+                              <img src={member.avatar} alt={member.name} className="w-10 h-10 rounded-full cursor-pointer" />
+                            </Link>
                             {member.id === matchedParty.hostId && (
                               <span className="absolute -top-2 left-1/2 transform -translate-x-1/2 text-xs">👑</span>
                             )}
