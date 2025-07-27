@@ -14,48 +14,58 @@ export default function Home() {
           そんな夜を、なくしたい。<br />
           誰でも気軽にフルパが組めるマッチングサービスを開発中です。
         </p>
+        <p className="mb-8">
+          <a href="https://note.com/tasu9ex" target="_blank" className="underline text-sm text-gray-300">
+            開発ストーリーを見る（note）
+          </a>
+        </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 mt-8">
-        <a
-          href="https://note.com/tasu9ex"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-[#21645f] text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
-        >
-          📝 構想を見る（note）
-        </a>
+      <div className="flex flex-col items-center mt-8 space-y-4">
+        <p className="text-sm text-center text-gray-300">
+          テストユーザー募集中です。フィードバック・意見や感想をこちらにお願いします。
+        </p>
 
         <a
-          href="/party/home"
-          className="px-8 sm:px-12 md:px-16 py-5 text-lg sm:text-xl md:text-2xl bg-[#21645f] text-white border border-white rounded-full shadow-md hover:bg-[#184437] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
+          href="https://discord.gg/aETGfuBgFy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 sm:px-8 md:px-10 py-3 text-base sm:text-lg md:text-xl bg-[#5865F2] text-white border border-white rounded-full shadow-md hover:bg-[#4752c4] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
         >
-          🧪 モックを触る
+          <span className="block w-[20ch] text-center">Discordコミュニティに参加</span>
         </a>
       </div>
 
       {/* プロトタイプUI紹介（iPhone風枠で表示） */}
-      <section className="text-center mt-16 bg-primary py-10 rounded-lg">
-        <h2 className="text-2xl font-semibold mb-4">🔧 モック イメージ</h2>
+      <div className="flex flex-wrap justify-center gap-4">
+        <a
+          href="/party/home"
+          className="px-6 sm:px-8 md:px-10 py-3 text-base sm:text-lg md:text-xl bg-[#f43f5e] text-white border border-white rounded-full shadow-md hover:bg-[#e11d48] hover:scale-105 transition-transform duration-200 cursor-pointer whitespace-nowrap"
+        >
+          <span className="block w-[20ch] text-center">🧪 プロトタイプを試す</span>
+        </a>
+      </div>
+      <section className="text-center mt-8 bg-primary py-10 rounded-lg">
+        <h2 className="text-2xl font-semibold mb-4">🔧 プロトタイプ イメージ</h2>
         <p className="text-md max-w-md mx-auto mb-6">
           現在UIを開発中です。以下はそのイメージ画像です。
         </p>
 
-        {/* PC表示用：モックイメージ画像 */}
+        {/* PC表示用：プロトタイプイメージ画像 */}
         <div className="hidden sm:flex justify-center">
           <img
             src="/mockPICTURE.png"
             alt="プロトタイプイメージ"
-            className="w-[50vw] max-w-[393px] h-auto aspect-[393/752] rounded-[40px] shadow-2xl object-cover"
+            className="w-full max-w-[393px] h-auto aspect-[393/752] rounded-[40px] shadow-2xl object-cover"
           />
         </div>
 
-        {/* スマホ表示用：モックイメージ画像 */}
+        {/* スマホ表示用：プロトタイプイメージ画像 */}
         <div className="sm:hidden">
           <img
             src="/mockPICTURE.png"
-            alt="モックイメージ"
-            className="w-full rounded-lg shadow-lg object-cover"
+            alt="プロトタイプイメージ"
+            className="w-1/2 max-w-[393px] mx-auto rounded-lg shadow-lg object-cover"
           />
         </div>
       </section>
@@ -145,7 +155,8 @@ export default function Home() {
               <div className="text-xs text-gray-400 space-y-0.5">
                 <p>📧 fullparty.dev@gmail.com</p>
                 <p>🐦 <a href="https://twitter.com/tqsu9ex" target="_blank" className="underline">X（@tqsu9ex）</a></p>
-                <p>📘 <a href="https://note.com/tasu9ex" target="_blank" className="underline">noteページ</a></p>
+                <p>📘 <a href="https://note.com/tasu9ex" target="_blank" className="underline">noteで開発背景や構想を発信しています</a></p>
+                <p>💬 <a href="https://discord.gg/aETGfuBgFy" target="_blank" className="underline">Discord コミュニティに参加する</a></p>
               </div>
             </div>
           </div>
