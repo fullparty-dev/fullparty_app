@@ -1,5 +1,4 @@
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "フルパを当たり前にする世界へ",
