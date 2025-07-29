@@ -2,6 +2,22 @@ import { Party } from '../types';
 
 export const mockParties: Party[] = [
   {
+    id: '999',
+    gameTitle: 'Apex Legends',
+    hostId: 'u24',
+    type: 'casual',
+    startAt: null,
+    requireFull: false,
+    maxMembers: 2,
+    memberIds: ['u24'],
+    acceptedDevices: ['PS', 'Xbox', 'Switch'],
+    vcTool: 'Discord',
+    rankRange: [],
+    message: 'CS限定デュオ！今すぐ気軽にいける方～🎮',
+    playStyleTag: 'エンジョイ',
+    ageTag: '誰でも歓迎',
+  },
+  {
     id: '000',
     gameTitle: 'Apex Legends',
     hostId: 'u20',

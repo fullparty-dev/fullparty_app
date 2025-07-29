@@ -254,5 +254,15 @@ export const mockUsers: User[] = [
     vcId: { "Apex Legends": "vc_u23" },
     clipUrl: "",
     devices: ["PC"]
+  },
+  {
+    id: "u24",
+    name: "すぎやま",
+    avatar: "https://ui-avatars.com/api/?name=すぎやま&background=random",
+    banner: "https://ui-avatars.com/api/?name=すぎやま&background=random",
+    ingameId: { "Apex Legends": "game_u24" },
+    vcId: { "Apex Legends": "vc_u24" },
+    clipUrl: "",
+    devices: ["Switch"]
   }
 ];
