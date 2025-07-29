@@ -3,6 +3,9 @@ const buildTime = process.env.NEXT_PUBLIC_BUILD_TIME;
 export default function Home() {
   return (
     <main className="min-h-screen bg-primary text-white flex flex-col items-center justify-center px-4 py-16 space-y-10 max-w-screen-xl mx-auto">
+      <p className="text-xs text-gray-400 text-center mt-4">
+        最終更新：{buildTime ? new Date(buildTime).toLocaleString('ja-JP') : '取得中…'}
+      </p>
       {/* バナー画像 */}
       <img src="/banner.png" alt="#フルパを当たり前にする大学生" className="w-full max-w-3xl rounded-lg shadow mt-16" />
 
@@ -16,7 +19,7 @@ export default function Home() {
         </p>
         <p className="mb-8">
           <a href="https://note.com/tasu9ex" target="_blank" className="underline text-sm text-gray-300">
-            開発ストーリーを見る（note）
+            開発ストーリーを見る（note）｜週一更新
           </a>
         </p>
       </div>
@@ -75,66 +78,43 @@ export default function Home() {
 
       {/* ユーザー分析・新構想まとめセクション */}
       <section className="mt-32 text-white text-center max-w-4xl space-y-12 px-4">
-        <h2 className="text-2xl font-bold">🧩 フルパ予約サービスの全体像と価値まとめ</h2>
+        <h2 className="text-2xl font-bold">🧩 フルパ予約サービスの進化とこれから</h2>
 
-        {/* ユーザーペルソナ */}
+        {/* ② どんな人にどう刺さってきたか */}
         <div className="space-y-6 text-left">
-          <h3 className="text-xl font-semibold">🧑‍💻 ユーザー像と初期リアクション（クローズドαテスト第1弾より）</h3>
+          <h3 className="text-xl font-semibold">🎯 ユーザーテストで見えてきた課題と共感</h3>
           <ul className="list-disc list-inside text-sm sm:text-base space-y-2">
-            <li><strong>💥 戦略系エンジョイ勢：</strong> フルパで目的をもって遊びたい層。信頼できる味方を求める。</li>
-            <li><strong>🧠 課題共感・提案系：</strong> Discordや掲示板文化への不満が明確。構造的な解決を歓迎。</li>
-            <li><strong>🎯 競技志向ロジカル勢：</strong> ロール配分や履歴、レビュー機能などに敏感。UXに厳密な期待あり。</li>
-            <li><strong>🫣 安心感重視系：</strong> 初対面プレイに不安があり、プロフィールや過去の情報で信頼を測りたい。</li>
-            <li><strong>🎮 素直な直感プレイヤー：</strong> 体験やデザインの“好き”が判断基準。第一印象が重要。</li>
+            <li>「仲間は欲しいけど、誘うのはちょっと重い」</li>
+            <li>「Discordや掲示板は、時間が合わない / 人が多すぎる」</li>
+            <li>「もう少しだけ“戦術的”に組みたい」</li>
           </ul>
           <p className="text-sm text-gray-300 mt-2">
-            ※ クローズドαテスト第1弾にご参加いただいた皆さま、本当にありがとうございました。皆さんの声がこのサービスを育てています。
+            そんな声をもとに、「予約制」「成立条件あり」「プロフィールつき」などの仕組みを試行中です。
           </p>
         </div>
 
-        {/* 主な課題と改善ポイント */}
+        {/* ③ どう進化してきたか */}
         <div className="space-y-6 text-left">
-          <h3 className="text-xl font-semibold">🛠 主な課題と改善ポイント</h3>
-          <ul className="list-disc list-inside text-sm sm:text-base space-y-2">
-            <li>🕓 マッチの待ち時間：ON/OFF切替や補欠制度の検討</li>
-            <li>✅ 信用の可視化：内部スコア＋レビューのハイブリッド案</li>
-            <li>🔁 掲示板との差別化：履歴/ソート/プロフ検索の強調</li>
-            <li>🎨 初期UI導線：ログイン直後の体験改善済・継続調整中</li>
-            <li>👤 プロフィール強化：プレイ傾向やVC有無などの明記</li>
-            <li>📷 安心材料：プロフにクリップ機能を追加検討</li>
-          </ul>
-        </div>
-
-        {/* 新構想：信用スコア */}
-        <div className="space-y-6 text-left">
-          <h3 className="text-xl font-semibold">✨ 新構想：信用スコア × AIマッチ最適化</h3>
+          <h3 className="text-xl font-semibold">🚀 差別化から“体験”へ</h3>
           <p className="text-sm sm:text-base">
-            パーティ解散後、各プレイヤーに「👍 / 👎 / 評価しない」の選択を提示。外部非公開の内部スコアに反映し、AIが“気が合う人”を上位表示します。
-          </p>
-          <ul className="list-disc list-inside text-sm sm:text-base space-y-1">
-            <li><strong>👍：</strong> 信用スコア上昇＋似たタイプを優先表示</li>
-            <li><strong>👎：</strong> スコア低下 → 表示頻度ダウン or 制限</li>
-            <li><strong>評価なし：</strong> スコア変動なし。ただし最適化対象外に</li>
-          </ul>
-          <p className="text-xs text-gray-300">
-            ※スコアは外部には見えず、安心して評価できる仕組みです。
+            最初のαテストでは「何が違うの？」という声が多く、構想の言語化に苦労しました。<br />
+            しかし第2弾では、「前よりめっちゃ良くなった」「すごい！」といったリアクションが増加。<br />
+            差別化を“語る”のではなく、“体験で伝える”UXへと手応えを感じ始めています。
           </p>
         </div>
 
-        {/* 差別化ポイント */}
+        {/* ④ 今後どう広げるか */}
         <div className="space-y-6 text-left">
-          <h3 className="text-xl font-semibold text-center">📌 他サービスとの違い</h3>
+          <h3 className="text-xl font-semibold">🔭 今後のアップデートと挑戦</h3>
           <ul className="list-disc list-inside text-sm sm:text-base space-y-2">
-            <li>✅ ロール選択ができる</li>
-            <li>⏰ 未来の予定をカバー（予約型マッチ対応）</li>
-            <li>🧑‍🤝‍🧑 フルパになるまで始まらない</li>
-            <li>📜 マッチ履歴が見られる</li>
-            <li>🔍 掲示板のように時系列で流れない（充填率・開始時刻でソート）</li>
-            <li>🧩 詳細検索（VCツールの有無、デバイス、ランクレンジ）</li>
-            <li>📷 プロフィールに1クリップ可能</li>
-            <li>🎮 クロスプレイ前提の設計</li>
-            <li>🔎 利用者の見える化（現在の募集数）</li>
+            <li>より柔軟な参加条件・マッチ成立制度</li>
+            <li>安心できるプロフィール設計と過去履歴の活用</li>
+            <li>「フルパに入りやすい空気感」のデザイン</li>
+            <li>評価や信用スコアによる“組みやすさ”の最適化</li>
           </ul>
+          <p className="text-sm text-gray-300 mt-2">
+            小さく作って、試して、また改善する。そんな積み重ねで、フルパが当たり前の世界を目指します。
+          </p>
         </div>
       </section>
 
@@ -160,9 +140,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <p className="text-xs text-gray-400 text-center mt-8">
-            最終更新：{buildTime ? new Date(buildTime).toLocaleString('ja-JP') : '取得中…'}
-          </p>
         </section>
       </footer>
     </main>
